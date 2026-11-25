@@ -67,9 +67,9 @@ type Props = {
 };
 
 export default function BootPrintScreen({ isPro, onNeedPro }: Props) {
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const frameW = width - 40;
-  const frameH = frameW * 1.25;
+  const frameH = Math.min(frameW * 1.25, Math.max(220, height - 540));
 
   const [uri, setUri] = useState<string | null>(null);
   const [stamp, setStamp] = useState<StampId>('boot');
@@ -108,7 +108,7 @@ export default function BootPrintScreen({ isPro, onNeedPro }: Props) {
 
   const choosePhoto = () => {
     Alert.alert('Add a photo', 'Take a photo of the fireplace, carpet or tree.', [
-      { text: 'Take photo', onPress: () => pick(true).catch(() => Alert.alert('Camera unavailable')) },
+      { text: 'Take photo', onPress: () => pick(true).catch(() => pick(false).catch(() => Alert.alert('Could not open photos', 'Please check photo access in Settings.'))) },
       { text: 'Choose from library', onPress: () => pick(false) },
       { text: 'Cancel', style: 'cancel' },
     ]);
