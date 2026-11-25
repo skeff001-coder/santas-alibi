@@ -25,6 +25,9 @@ workflows:
           node -e "const fs=require('fs');const a=JSON.parse(fs.readFileSync('app.json','utf8'));a.expo.ios.buildNumber=String(process.env.PROJECT_BUILD_NUMBER);fs.writeFileSync('app.json',JSON.stringify(a,null,2));"
       - name: Generate native iOS project
         script: npx expo prebuild --platform ios
+      - name: Remove push entitlement (local notifications only)
+        script: |
+          /usr/libexec/PlistBuddy -c "Delete :aps-environment" ios/SantasAlibi/SantasAlibi.entitlements || true
       - name: Set up code signing
         script: |
           cd ios
