@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "Santa's Alibi",
+    "slug": "santas-alibi",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0B1026"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.onjjem.santasalibi",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "sounds": [
+            "./assets/sounds/classic.wav",
+            "./assets/sounds/pie.wav",
+            "./assets/sounds/rudolph.wav",
+            "./assets/sounds/chaos.wav"
+          ]
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "Santa's Alibi uses the camera so you can take a photo and add a magical boot print.",
+          "photosPermission": "Santa's Alibi uses your photos so you can add a magical boot print to one."
+        }
+      ]
+    ]
+  }
+}
